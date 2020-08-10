@@ -7,7 +7,7 @@ function Particle(x, y, firework) {
     }
     else{
         this.vel = p5.Vector.random2D();
-        this.vel = this.vel.mult(random(1, 6));
+        //this.vel = this.vel.mult(random(1, 6));
     }
     
     this.acc = createVector(0, 0);

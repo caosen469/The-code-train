@@ -14,7 +14,7 @@ function Firework(){
                 this.exploded = true;
                 this.explode();
             }
-
+        }
             
         for (var i = 0; i < this.particles.length; i++){
             this.particles[i].applyForce(gravity);
@@ -38,5 +38,4 @@ function Firework(){
             this.particles[i].show();
         }
     }
-}
 }
