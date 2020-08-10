@@ -8,7 +8,7 @@ function setup() {
   // stroke(199, 237, 204);
   // strokeWeight(4);
   createCanvas(600, 400);
-  colorMode(HSB);
+  //colorMode(HSB);
   gravity = createVector(0, 0.2);
   background(0);
 }
