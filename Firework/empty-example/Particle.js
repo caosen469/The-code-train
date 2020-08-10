@@ -2,12 +2,12 @@ function Particle(x, y, firework) {
     this.pos = createVector(x, y);
     // this.firework = !exploder;
 
-    if (exploder){
+    if (firework){
         this.vel = createVector(0, random(-12, -8));
     }
     else{
         this.vel = p5.Vector.random2D();
-        this.vel = mult(random(1, 6));
+        this.vel = this.vel.mult(random(1, 6));
     }
     
     this.acc = createVector(0, 0);
