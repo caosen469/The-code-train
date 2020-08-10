@@ -8,7 +8,7 @@ function Particle(x, y, firework) {
     }
     else{
         this.vel = p5.Vector.random2D();
-        this.vel = this.vel.mult(random(1, 6));
+        this.vel = this.vel.mult(random(2, 10));
     }
     
     this.acc = createVector(0, 0);
@@ -19,7 +19,7 @@ function Particle(x, y, firework) {
 
     this.update = function(){
         if (!this.firework){
-            this.vel.mult(0.85);
+            this.vel.mult(0.9);
             this.lifespan -= 4;
         }
         this.vel.add(this.acc);
@@ -31,6 +31,16 @@ function Particle(x, y, firework) {
         //     this.pos.x = random(width);
         // }
     }
+
+    this.done = function(){
+        if (this.lifespan <= 0 ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     this.show = function(){
         //point(width/2, height/2);
         if (!this.firework){
