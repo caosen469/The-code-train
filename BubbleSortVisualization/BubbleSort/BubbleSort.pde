@@ -3,7 +3,8 @@ int i = 0;
 int j = 0;
 
 void setup(){
-  size(800, 500);
+  //size(800, 500);
+  fullScreen();
   values = new float[width];
   for (int i = 0; i < values.length; i++){
     values[i] = random(height);
