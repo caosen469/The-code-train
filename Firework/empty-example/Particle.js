@@ -1,7 +1,8 @@
-function Particle(x, y, firework) {
+function Particle(x, y, hu, firework) {
     this.pos = createVector(x, y);
     this.firework = firework;
     this.lifespan = 255;
+    this.hu = hu;
 
     if (this.firework){
         this.vel = createVector(0, random(-12, -8));
@@ -43,14 +44,16 @@ function Particle(x, y, firework) {
 
     this.show = function(){
         //point(width/2, height/2);
+        colorMode(HSB);
         if (!this.firework){
-            stroke(255, this.lifespan);
+            stroke(hu, 255, 255, this.lifespan);
             strokeWeight(2);
         }
         else{     
-            stroke(255);
+            stroke(hu, 255, 255);
             strokeWeight(4);
         } 
         point(this.pos.x, this.pos.y);
     }
+    console.log("the hu value is " + hu);
 }
