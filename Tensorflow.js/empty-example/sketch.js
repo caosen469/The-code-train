@@ -13,9 +13,12 @@ function setup() {
   // const data = tf.tensor([1, 2, 3, 4, 1, 2, 3, 4], [2, 2, 2]);
   // console.log(data.toString());
   // console.log(data);
-  tense.data().then(function(stuff){
-    console.log(stuff);
-  })
+
+  // tense.data().then(function(stuff){
+  //   console.log(stuff);
+  // })
+  tense.print();
+  console.log(tense.dataSync());
 }
 
 function draw() {
