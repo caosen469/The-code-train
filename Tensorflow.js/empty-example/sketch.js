@@ -17,8 +17,11 @@ function setup() {
   // tense.data().then(function(stuff){
   //   console.log(stuff);
   // })
-  tense.print();
-  console.log(tense.dataSync());
+
+//   tense.print();
+//   console.log(tense.dataSync());
+
+console.log(tense.get(29));
 }
 
 function draw() {
