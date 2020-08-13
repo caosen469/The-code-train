@@ -1,27 +1,28 @@
 function setup() {
   // put setup code here
   noCanvas;
-  // tf.tensor([1, 2, 3, 4]).print();
-  const values = [];
-  for (let i = 0; i < 30; i++){
-    values[i] = random(0, 100);
-  }
-  const shape = [2, 5, 3];
-  const tense = tf.tensor(values, shape, 'int32');
 
+  const model = tf.sequential();
 
-  // const data = tf.tensor([1, 2, 3, 4, 1, 2, 3, 4], [2, 2, 2]);
-  // console.log(data.toString());
-  // console.log(data);
+  const hidden = tf.layers.dense({
+    units: 4,
+    inputShape: [2],
+    activation: 'sigmoid' 
+  });
+  const output = tf.layers.dense({
+    units: 3,
+    activation: 'sigmoid'
+  });
 
-  // tense.data().then(function(stuff){
-  //   console.log(stuff);
-  // })
+  model.add(hidden);
+  model.add(output);
 
-//   tense.print();
-//   console.log(tense.dataSync());
+  const sgdOptimizer = tf.train.sgd(0.1);
 
-console.log(tense.get(29));
+  model.compile({
+    optimizer: sgdOptimizer,
+    loss: 'meanSquareError'
+  });
 }
 
 function draw() {
