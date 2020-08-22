@@ -23,9 +23,9 @@ function setup() {
 function predict(x){
     const xs = tf.tensor1d(x);
     // y = mx + b
-    const ys = xs.mul(m).add(b);
+    const lineY = xs.mul(m).add(b);
 
-    return ys;
+    return lineY;
 }
 
 function mousePressed(){
@@ -39,11 +39,14 @@ function draw() {
   // put drawing code here
  
   // train the model each frame
-  // optimizer.minimize(() => loss(f(xs), ys));
-  if (x_vals.length > 0){
-    const ys = tf.tensor1d(y_vals);
-    optimizer.minimize(() => loss(predict(x_vals), ys));  
-  }
+  // optimizer.minimize(() => loss(f(xs), lineY));
+  
+  tf.tidy(() => {
+    if (x_vals.length > 0){
+      const lineY = tf.tensor1d(y_vals);
+      optimizer.minimize(() => loss(predict(x_vals), lineY));  
+    } 
+  });
   
 
 
@@ -55,5 +58,28 @@ function draw() {
     let px = map(x_vals[i], 0, 1, 0, width);
     let py = map(y_vals[i], 0, 1, height, 0);
     point(px, py);
+
+ 
+  let lineX = [0, 1]
+  //const xs = tensor1d(lineX);
+  const ys = tf.tidy(() => predict(lineX));
+  lineY = ys.dataSync();
+  ys.dispose();
+
+  let x1 = map(lineX[0], 0, 1, 0, width);
+  let x2 = map(lineX[1], 0, 1, 0, width);
+
+  // transform the vector data back to float array
+  
+  let y1 = map(lineY[0], 0, 1, height, 0);
+  let y2 = map(lineY[1], 0, 1, height, 0);
+
+  strokeWeight(2);
+  line(x1, y1, x2, y2);
+
+  strokeWeight(8);
+
+  ys.dispose();
   }
+  console.log(tf.memory().numTensors);
 }
