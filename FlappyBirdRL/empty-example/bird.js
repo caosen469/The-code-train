@@ -1,5 +1,7 @@
 // constructor function
-function Bird(){
+class Bird{
+    
+    constructor(brain){
     this.y = height / 2;
     this.x = 64;
     this.gravity = 0.6;
@@ -7,10 +9,16 @@ function Bird(){
     this.velocity = 0;
     this.score = 0;
     this.fitness;
+    
+    if (brain){
+        this.brain = brain.copy();
+        }
+    else{
+        this.brain = new NeuralNetwork(4, 4, 1);
+        }
+    }
 
-    this.brain = new NeuralNetwork(4, 4, 1);
-
-    this.think = function(pipes){
+    think(pipes){
         
         // Find the closest pipe
         let closest = null;
@@ -35,23 +43,24 @@ function Bird(){
         }
     }
 
-    this.show = function() {
+    show() {
         fill(255);
         ellipse(this.x, this.y,32,32);
         // console.log("Print the circle!");
     }
 
-    this.up = function(){
+    up(){
         this.velocity += -this.lift;
         //console.log(this.velocity);
     }
 
-    this.mutate = function(){
+    mutate(){
         this.brain.mutate(0.1);
     }
 
-    this.update = function(){
+    update(){
         this.score++;
+        // console.log(this.score);
         this.velocity += this.gravity;
         this.y += this.velocity;
 

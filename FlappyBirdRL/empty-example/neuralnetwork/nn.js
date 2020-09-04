@@ -165,7 +165,9 @@ class ActivationFunction {
       function mutate(val) {
         if (Math.random() < rate) {
           // return 2 * Math.random() - 1;
+          //console.log(val);
           return val + randomGaussian(0, 0.1);
+          ;
         } else {
           return val;
         }
